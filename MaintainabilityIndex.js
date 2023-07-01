@@ -5,10 +5,10 @@ const id = process.argv[2];
 const lang = process.argv[3];
 let code = process.argv[4];
 function MaintainabilityIndexFinder(id, code, language){
-   const myCode = Buffer.from(code, 'base64').toString('utf-8');;
-   const filename = `${id}.txt`;
+   const myCode = Buffer.from(code, 'base64').toString('utf-8'); // decode base64 code
+   const filename = `${id}.txt`; // assign id.txt
    try {
-      fs.writeFileSync(filename, myCode);
+      fs.writeFileSync(filename, myCode); // write decoded code to txt
 
     } catch (err) {
       console.error('Error writing file:', err);
@@ -16,8 +16,8 @@ function MaintainabilityIndexFinder(id, code, language){
     }
 
 
-   let regex = /\b([a-zA-Z_]\w*)\b/g;
-   let CPP_KEYS = /(?:^|[^:.])\b(case|while|if|for|int|return|float|double|iostream|include|cout|cin|endl|std|void)\b(?![:.])/;
+   let regex = /\b([a-zA-Z_]\w*)\b/g; // find all words
+   let CPP_KEYS = /(?:^|[^:.])\b(case|while|if|for|int|return|float|double|iostream|include|cout|cin|endl|std|void)\b(?![:.])/; //exclude these words for finding operands
    let PYTHON_KEYS = /\b(def|range|input|print|int|in|for|return|from|import|format|len|str|split|while|if|switch|case)\b/;
    let JS_KEYS = /\b(function|var|let|for|while|return|forEach|try|catch|const|require|if|switch|case)\b/;
    let SELECTED_KEY;
@@ -91,7 +91,7 @@ function MaintainabilityIndexFinder(id, code, language){
    
    var words = codeWithoutQuotes.match(regex);
    
-   // CPP_KEYS ifadelerini çıkarma
+   // SELECTED_KEY excluding
    var filteredWords = words.filter(word => !SELECTED_KEY.test(word));
    
    //console.log(filteredWords);
