@@ -52,8 +52,8 @@ function MaintainabilityIndexFinder(id, code, language){
          const regexMatch = output.match(/operator_count(\d+)/);
          regexCount = regexMatch ? parseInt(regexMatch[1], 10) : 0;
        
-         //console.log('Operator Occurrence:', operatorCount);
-        //console.log('Operator Count:', regexCount);
+         console.log('Operator Occurrence:', operatorCount);
+         console.log('Operator Count:', regexCount);
        } catch (error) {
          console.error('Error executing C++ program:', error);
        }
@@ -105,7 +105,7 @@ function MaintainabilityIndexFinder(id, code, language){
    //console.log(allOperands);
    runCppProgram()
    runCyclomatic()
-   let operandCount = allOperands.length;
+   let operandCount = allOperands.length; // 
    let operandOccurrence = filteredWords.length;
 
    // Halstead Metrics
@@ -116,7 +116,8 @@ function MaintainabilityIndexFinder(id, code, language){
    
    let V = N * Math.log2(n); // Program volume
    let D = n1 / (2 * n2); // Program difficulty
-
+   let E = V * D;
+   let exTime = E/18;
    let maintainabilityIndex = 171 - 5.2 * Math.log(V) - 0.23 * cyclomaticComplexity - 16.2 * Math.log(codeLength) 
    /*
    Maintainability Index - Calculates an index value between 0 and 100 that
@@ -130,6 +131,11 @@ function MaintainabilityIndexFinder(id, code, language){
   let result = {
    codeLength:codeLength,
    halsteadVolume: V,
+   operandCount:operandCount,
+   operatorCount:operatorCount,
+   halsteadDifficulty: D,
+   halsteadEffort:E,
+   halsteadEstimatedTime:exTime,
    cyclomaticComplexity: cyclomaticComplexity,
    maintainabilityIndex: maintainabilityIndex
   }
