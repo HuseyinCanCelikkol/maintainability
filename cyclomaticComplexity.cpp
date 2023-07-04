@@ -6,9 +6,6 @@
 #include <algorithm>
 #include <cctype>
 #include <vector>
-#define LANGUAGE_COUNT 6
-#define KEY_SIZE 8
-#define STRING_SIZE 32
 
 bool FoundKey = false;
 using namespace std;
@@ -16,7 +13,7 @@ ifstream Code;
 string rowOfCode;
 vector<string> CPP_KEYS = {"if(","while(","for(","?", "&&","||","case","default:"};
 vector<string> PY_KEYS = {"if","while","for","?","&&","||","case","default"};
-vector<string> JS_KEYS = {"if","while","for","?","&&","||","case","default","forEach(","try{"};
+vector<string> JS_KEYS = {"if(","while(","for(","?","&&","||","case","default","forEach(","try{"};
 vector<string> SELECTED_KEY;
 
 int cyclomaticComplexityVal = 0;
