@@ -15,9 +15,10 @@ int main(int argc, char *argv[]) {
     std::ofstream dataFile;
     std::vector<std::string> regexfound;
     std::vector<std::string> operandfound;
-    std::regex cppRegex("(==|!=|<=|>=|\\+=|-=|\\*=|/=|%=|<<=|>>=|&=|\\^=|\\|=|\\+\\+|--|&&|\\|\\||\\||<<|\\(|\\)|>>|->|=|-|\\*|\\/|%|<|>|&|\\^|\\||\\{|int|char|string|bool|float|double|if|for|do|return|\\~|!)");
-    std::regex pyRegex("(==|\\!=|<=|>=|\\+=|-=|\\*=|\\/=|%=|<<=|>>=|&=|\\^=|\\|=|\\+\\+|--|&&|\\|\\||\\||<<|\\[\\(|\\)|>>|->|==|!=|<=|>=|\\+|-|\\*|\\/|%|<|>|&|\\^|\\||=|}|if|for|do|try|catch|while|return|\\~|!)");
-    std::regex jsRegex("(==|\\!=|<=|>=|\\+=|-=|\\*=|\\/=|%=|<<=|>>=|&=|\\^=|\\|=|\\+\\+|--|&&|\\|\\||\\||<<|\\[\\(|\\)|>>|->|==|!=|<=|>=|\\+|-|\\*|\\/|%|<|>|&|\\^|\\||=|}|if|for|forEach|do|try|catch|while|return|\\~|!)");;
+
+    std::regex cppRegex("(==|!=|<=|>=|\\+=|-=|\\*=|/=|%=|<<=|>>=|&=|\\^=|\\|=|\\+\\+|--|&&|\\|\\||\\||<<|\\(|\\)|>>|->|=|-|\\*|\\/|%|<|>|&|\\^|\\||\\{|int|char|string|bool|float|double|if|for|do|return|\\~|\\+|!)");
+    std::regex pyRegex("(==|!=|<=|>=|\\+=|-=|\\*=|/=|%=|<<=|>>=|&=|\\^=|\\|=|\\+\\+|--|&&|\\|\\||\\||<<|\\(|\\)|>>|->|=|-|\\*|\\/|%|<|>|&|\\^|\\||\\{|if|for|do|try|catch|while|return|\\~|!)");
+    std::regex jsRegex("(==|!=|<=|>=|\\+=|-=|\\*=|/=|%=|<<=|>>=|&=|\\^=|\\|=|\\+\\+|--|&&|\\|\\||\\||<<|\\(|\\)|>>|->|=|-|\\*|\\/|%|<|>|&|\\^|\\||\\{|if|for|do|try|forEach|catch|while|return|\\~|!)");
     std::regex regexPattern;
 
     if(std::strcmp(argv[2], "cpp") == 0){
