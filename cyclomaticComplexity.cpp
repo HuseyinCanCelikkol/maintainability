@@ -6,7 +6,7 @@
 #include <algorithm>
 #include <cctype>
 #include <vector>
-
+#include <cstring>
 bool FoundKey = false;
 using namespace std;
 ifstream Code;
@@ -27,21 +27,21 @@ int main(int argc, char* argv[]) {
     Code.open(argv[1]); // open the txt
     string language = argv[2];
     std::cout << argv[2];
-    if(language == "js"){
+    if(strcmp(argv[2], "js")){
         SELECTED_KEY = JS_KEYS;
         std::cout << "js selected";
         for(int i = 0;i<SELECTED_KEY.size();i++){
             cout << SELECTED_KEY[i] << ", ";
         }
     }
-    else if(language == "cpp"){
+    else if(strcmp(argv[2], "cpp")){
         SELECTED_KEY = CPP_KEYS;
         cout << "cpp selected";
         for(int i = 0;i<SELECTED_KEY.size();i++){
             cout << SELECTED_KEY[i] << ", ";
         }
     }
-    else if(language == "py"){
+    else if(strcmp(argv[2], "py")){
         SELECTED_KEY = PY_KEYS;
         cout << "py selected";
         for(int i = 0;i<SELECTED_KEY.size();i++){
@@ -69,7 +69,7 @@ while(!Code.eof()){
                     cyclomaticComplexityVal++;
                     break;
                 }
-                
+
                 
             int tempRowIterator = rowIterator+1; // temp row iterator. If it finds a key, simply goes afterwards of found key.
             for(int letterOfKeyIterator = 1;letterOfKeyIterator<SELECTED_KEY[keysIterator].size();letterOfKeyIterator++){ // here we controlling key and letter if really meshes together
