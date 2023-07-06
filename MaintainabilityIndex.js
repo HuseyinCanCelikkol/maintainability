@@ -52,8 +52,8 @@ function MaintainabilityIndexFinder(id, code, language){
          const regexMatch = output.match(/operator_count(\d+)/);
          regexCount = regexMatch ? parseInt(regexMatch[1], 10) : 0;
        
-         console.log('Operator Occurrence:', operatorCount);
-         console.log('Operator Count:', regexCount);
+/*          console.log('Operator Occurrence:', operatorCount);
+         console.log('Operator Count:', regexCount); */
        } catch (error) {
          console.error('Error executing C++ program:', error);
        }
