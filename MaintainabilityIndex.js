@@ -1,6 +1,7 @@
 //operand finder.
 const { execSync } = require('child_process');
 const fs = require('fs');
+const path = require('path');
 const id = process.argv[2];
 const lang = process.argv[3];
 let code = process.argv[4];
@@ -41,7 +42,18 @@ function MaintainabilityIndexFinder(id, code, language){
    let codeLength;
    function runCppProgram() {
       try {
-         execSync('g++ cppfuncfinder.cpp -o cppfuncfinder'); // Compile the C++ program
+         const currentDir = __dirname;
+         const fileName = 'cppfuncfinder.exe';
+         const filePath = path.join(currentDir, fileName);
+         fs.access(filePath, fs.constants.F_OK, (err) => {
+            if (err) {
+              console.error('Compiling completed. Please run program again.');
+              execSync('g++ cppfuncfinder.cpp -o cppfuncfinder');
+            } else {
+              console.log('File exists');
+            }
+          });
+         //execSync('g++ cppfuncfinder.cpp -o cppfuncfinder'); // Compile the C++ program
          const command = `\cppfuncfinder ${filename} ${language}`;
          const output = execSync(command).toString(); // Execute the compiled program
        
@@ -61,7 +73,18 @@ function MaintainabilityIndexFinder(id, code, language){
     }
     function runCyclomatic() {
       try {
-         execSync('g++ cyclomaticComplexity.cpp -o cyclomaticComplexity'); // Compile the C++ program
+         const currentDir = __dirname;
+         const fileName = 'cyclomaticComplexity.exe';
+         const filePath = path.join(currentDir, fileName);
+         fs.access(filePath, fs.constants.F_OK, (err) => {
+            if (err) {
+               console.error('Compiling completed. Please run program again.');
+              execSync('g++ cyclomaticComplexity.cpp -o cyclomaticComplexity');
+            } else {
+              console.log('File exists');
+            }
+          });
+         //execSync('g++ cyclomaticComplexity.cpp -o cyclomaticComplexity'); // Compile the C++ program
          const command = `\cyclomaticComplexity ${filename} ${language}`;
          const output = execSync(command).toString(); // Execute the compiled program
        
